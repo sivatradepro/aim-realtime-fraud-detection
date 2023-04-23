@@ -1,0 +1,40 @@
+---
+dynaconf_merge:
+  true
+
+global:
+  task_argument_class_mapping:
+    standardize: aim_realtime_fraud_detection.tasks.StandardizeDataTask
+    curate: aim_realtime_fraud_detection.tasks.CurateDataTask
+    algorithm: aim_realtime_fraud_detection.tasks.Algorithm
+  movie_languages_filter: ["EN", "FR", "DE", "ES"]
+development:
+  data:
+    raw:
+      location: data/transactions.csv
+    fraud_transactions:
+      table: default.fraud_transactions      
+    non_fraud_transaction:
+      table: default.movie_ratings_curated      
+
+# staging:
+#   data:
+#     raw:
+#       location: s3://data-lake-raw-staging/movie_ratings
+#     standardized:
+#       table: standardized_staging.movie_ratings
+#       dq_checks_file: dq_checks_standardized.yaml
+#     curated:
+#       table: curated_staging.movie_ratings
+#       dq_checks_file: dq_checks_curated.yaml
+
+# live:
+#   data:
+#     raw:
+#       location: s3://data-lake-raw-live/movie_ratings
+#     standardized:
+#       table: standardized_live.movie_ratings
+#       dq_checks_file: dq_checks_standardized.yaml
+#     curated:
+#       table: curated_live.movie_ratings
+#       dq_checks_file: dq_checks_curated.yaml

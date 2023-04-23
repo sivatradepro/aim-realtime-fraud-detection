@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "aim-realtime-fraud-detection"
+version = "0.1.0"
+description = ""
+authors = ["“Sivakumar <“sivacit@gmail.com”>"]
+readme = "README.md"
+packages = [{include = "aim_realtime_fraud_detection"}]
+
+[tool.poetry.dependencies]
+python = "^3.9.13"
+dynaconf = "^3.1.12"
+delta-spark = "^2.3.0"
+soda-core-spark-df = "^3.0.32"
+kafka-python = "^2.0.2"
+
+[tool.poetry.dev-dependencies]
+pyspark = "3.3.2"
+ruff = "^0.0.262"
+mypy = "^1.2.0"
+isort = "^5.12.0"
+pytest = "^7.3.1"
+pytest-cov = "^4.0.0"
+chispa = "^0.9.2"
+black = "^23.3.0"
+pre-commit = "^3.2.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py310']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs
+    | \.git
+    | \.mypy_cache
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+
+[tool.isort]
+profile = "black"
+
+[tool.coverage.run]
+branch = true
+source = ["movies_etl"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.ruff]
+line-length = 120
